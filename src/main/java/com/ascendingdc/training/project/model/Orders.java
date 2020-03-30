@@ -1,7 +1,10 @@
 package com.ascendingdc.training.project.model;
 
+import javax.persistence.*;
 import java.sql.Date;
 
+@Entity
+@Table(name = "orders")
 public class Orders {
     public Orders() {}
     public Orders(Date orderDate, Date flightDate, String level, String seat, float balance, long customerId, long airlineId) {
@@ -15,20 +18,30 @@ public class Orders {
     }
 
     //Attributes setting for matching tables' column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
+    @Column(name = "order_date")
     private Date orderDate;
 
+    @Column(name = "flight_date")
     private Date flightDate;
 
+    @Column(name = "level")
     private String level;
 
+    @Column(name = "seat")
     private String seat;
 
+    @Column(name = "balance")
     private float balance;
 
+    @Column(name = "customer_id")
     private long customerId;
 
+    @Column(name = "airline_id")
     private long airlineId;
 
     //Methods for getting and setting the instances' data (records)

@@ -1,5 +1,11 @@
 package com.ascendingdc.training.project.model;
 
+
+import javax.persistence.*;
+
+//domain | model | entity
+@Entity
+@Table(name = "customers")
 public class Customers {
     public Customers() {}
     public Customers(String name, String firstName, String lastName, String telephone, String email, String address, String city, String state, String zipcode){
@@ -15,24 +21,36 @@ public class Customers {
     }
 
     //Attributes setting for matching tables' column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "first_name")
     private String firstName;
 
+    @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "telephone")
     private String telephone;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "address")
     private String address;
 
+    @Column(name = "city")
     private String city;
 
+    @Column(name = "state")
     private String state;
 
+    @Column(name = "zipcode")
     private String zipcode;
 
     //Methods for getting and setting the instances' data (records)

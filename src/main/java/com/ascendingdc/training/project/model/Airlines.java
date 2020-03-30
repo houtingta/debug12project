@@ -1,5 +1,9 @@
 package com.ascendingdc.training.project.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "airlines")
 public class Airlines {
     public Airlines() {}
     public Airlines(String name, String tailNumber, String flightNumber) {
@@ -8,10 +12,15 @@ public class Airlines {
     }
 
     //Attributes setting for matching tables' column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "tail_number")
     private String tailNumber;
 
     //Methods for getting and setting the instances' data (records)
