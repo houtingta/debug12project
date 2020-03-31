@@ -28,7 +28,7 @@ public class HibernateUtil {
         if (sessionFactory == null) {
             //construct session factory
             try {
-                String[] modelPackages = {"com.ascending.training.project.model"};
+                String[] modelPackages = {"com.ascendingdc.training.project.model"};
                 String dbDriver = System.getProperty("database.driver");
                 String dbDialect = System.getProperty("database.dialect");
                 String dbUrl = System.getProperty("database.url");
@@ -64,8 +64,9 @@ public class HibernateUtil {
     //singleton design pattern demo
     public static void main(String[] args) {
         SessionFactory sf = HibernateUtil.getSessionFactory();
-        Session s = sf.openSession();
-        Session s1 = sf.openSession();
+        logger.info("success generate sf" + sf.hashCode());
+//        Session s = sf.openSession();
+//        Session s1 = sf.openSession();
     }
 
 }
