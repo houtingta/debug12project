@@ -1,15 +1,24 @@
 package com.ascendingdc.training.project.repository;
 
+import com.ascendingdc.training.project.init.AppInitializer;
 import com.ascendingdc.training.project.model.Airlines;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = AppInitializer.class)
 public class AirlinesDaoTest {
+    @Autowired
     private AirlinesDao airlinesDao;
+
     private Airlines a1;
     private String airlineName = "OP";
     private String tailNumber = "N17452";
@@ -22,7 +31,7 @@ public class AirlinesDaoTest {
 
     @Before
     public void init() {
-        airlinesDao = new AirlinesDaoImpl();
+//        airlinesDao = new AirlinesDaoImpl();
         a1 = new Airlines();
         a1.setName(airlineName);
         a1.setTailNumber(tailNumber);

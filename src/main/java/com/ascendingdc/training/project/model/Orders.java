@@ -42,7 +42,7 @@ public class Orders {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customers customers;
-//    private long customer_Id;
+    private long customer_Id;
 
 //    @Column(name = "customer_id")
 //    private long customerId;
@@ -105,12 +105,10 @@ public class Orders {
 
     public long getCustomerId() { return customers.getId(); }
 
-    public void setCustomerId(long customerId) { customers.setId(customerId); }
+    public void setCustomerId(long customerId) { this.customer_Id =customerId; }
 
     public long getAirlineId() { return airlineId; }
 
-    public void setAirlineId(long airlineId) {
-        this.airlineId = airlineId;
-    }
+    public void setAirlineId(long airlineId) { this.airlineId = airlineId; }
 
 }

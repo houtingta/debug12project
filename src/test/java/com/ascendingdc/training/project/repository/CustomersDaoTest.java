@@ -1,14 +1,22 @@
 package com.ascendingdc.training.project.repository;
 
+import com.ascendingdc.training.project.init.AppInitializer;
 import com.ascendingdc.training.project.model.Customers;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = AppInitializer.class)
 public class CustomersDaoTest {
+    @Autowired
     private CustomersDao customersDao;
     private Customers c1;
     private String custName = "May";
@@ -18,7 +26,7 @@ public class CustomersDaoTest {
 
     @Before
     public void init() {
-        customersDao = new CustomersDaoImpl();
+//        customersDao = new CustomersDaoImpl();
         c1 = new Customers();
         c1.setName(custName);
         c1 = customersDao.insert(c1);

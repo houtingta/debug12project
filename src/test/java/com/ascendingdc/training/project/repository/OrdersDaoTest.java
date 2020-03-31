@@ -1,15 +1,24 @@
 package com.ascendingdc.training.project.repository;
 
+import com.ascendingdc.training.project.init.AppInitializer;
 import com.ascendingdc.training.project.model.Orders;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = AppInitializer.class)
 public class OrdersDaoTest {
+    @Autowired
     private OrdersDao ordersDao;
+
     private Orders o1;
     private long custId = 7;
     private long airId = 8;
@@ -21,7 +30,7 @@ public class OrdersDaoTest {
 
     @Before
     public void init() {
-        ordersDao = new OrdersDaoImpl();
+//        ordersDao = new OrdersDaoImpl();
         o1 = new Orders();
         o1.setCustomerId(custId);
         o1.setAirlineId(airId);
