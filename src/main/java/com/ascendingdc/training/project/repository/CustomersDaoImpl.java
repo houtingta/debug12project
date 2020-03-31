@@ -125,6 +125,49 @@ public class CustomersDaoImpl implements CustomersDao{
     }
 
     @Override
+    public List<Customers> getCustomersWithOrders() {
+        return null;
+    }
+
+    @Override
+    public Customers getCustomersEagerBy(Long id) {
+        String hql = "FROM Customers c LEFT JOIN FETCH c.orders WHERE c.id = :Id";
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        try {
+            Query<Customers> query = session.createQuery(hql);
+            query.setParameter("Id", id);
+            Customers result = query.uniqueResult();
+            session.close();
+            return result;
+        }
+        catch (HibernateException e) {
+            logger.error("failure to retrieve data record", e);
+            session.close();
+            return null;
+        }
+    }
+
+    @Override
+    public Customers getCustomersLazyBy(Long id) {
+        String hql = "FROM Customers c WHERE c.id = :Id";
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
+        try {
+            Query<Customers> query = session.createQuery(hql);
+            query.setParameter("Id", id);
+            Customers result = query.uniqueResult();
+            session.close();
+            return result;
+        }
+        catch (HibernateException e) {
+            logger.error("failure to retrieve data record", e);
+            session.close();
+            return null;
+        }
+    }
+
+    @Override
     public Customers getCustomersByName(String custName) {
         Customers customers = new Customers();
         String hql = "FROM Customers AS cust WHERE cust.name = :name";

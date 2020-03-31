@@ -50,6 +50,15 @@ public class CustomersDaoTest {
         Assert.assertEquals(beforeDelete, customersDao.getCustomers().size());
     }
 
+
+    @Test
+    public void getCustomersEagerByTest() {
+        Customers customers = customersDao.getCustomersEagerBy(c1.getId());
+        Assert.assertNotNull(customers);
+        Assert.assertEquals(customers.getName(), c1.getName());
+        Assert.assertTrue(customers.getOrders().size()>0);
+    }
+
     @Test
     public void getCustomersTest() {
         List<Customers> customers = customersDao.getCustomers();

@@ -5,6 +5,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "orders")
+//owning side
 public class Orders {
     public Orders() {}
     public Orders(Date orderDate, Date flightDate, String level, String seat, float balance, long customerId, long airlineId) {
@@ -13,7 +14,7 @@ public class Orders {
         this.level = level;
         this.seat = seat;
         this.balance = balance;
-        this.customerId = customerId;
+//        this.customerId = customerId;
         this.airlineId = airlineId;
     }
 
@@ -38,8 +39,17 @@ public class Orders {
     @Column(name = "balance")
     private float balance;
 
-    @Column(name = "customer_id")
-    private long customerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    private Customers customers;
+//    private long customer_Id;
+
+//    @Column(name = "customer_id")
+//    private long customerId;
+
+//    @ManyToOne
+//    @JoinColumn(name = "airline_id")
+//    private Airlines airlines;
 
     @Column(name = "airline_id")
     private long airlineId;
@@ -93,17 +103,11 @@ public class Orders {
         this.balance = balance;
     }
 
-    public long getCustomerId() {
-        return customerId;
-    }
+    public long getCustomerId() { return customers.getId(); }
 
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
-    }
+    public void setCustomerId(long customerId) { customers.setId(customerId); }
 
-    public long getAirlineId() {
-        return airlineId;
-    }
+    public long getAirlineId() { return airlineId; }
 
     public void setAirlineId(long airlineId) {
         this.airlineId = airlineId;

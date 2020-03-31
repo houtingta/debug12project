@@ -10,5 +10,8 @@ public interface CustomersDao {
     boolean deleteCustomer(String custName);
     boolean deleteCustomer(Customers customers);
     List<Customers> getCustomers();
+    List<Customers> getCustomersWithOrders();
+    Customers getCustomersEagerBy(Long id);
+    Customers getCustomersLazyBy(Long id);
     Customers getCustomersByName(String custName);
 }

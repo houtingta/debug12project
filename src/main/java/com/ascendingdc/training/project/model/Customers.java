@@ -2,10 +2,12 @@ package com.ascendingdc.training.project.model;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 //domain | model | entity
 @Entity
 @Table(name = "customers")
+//Invert side
 public class Customers {
     public Customers() {}
     public Customers(String name, String firstName, String lastName, String telephone, String email, String address, String city, String state, String zipcode){
@@ -52,6 +54,9 @@ public class Customers {
 
     @Column(name = "zipcode")
     private String zipcode;
+
+    @OneToMany(mappedBy = "customers", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Orders> orders;
 
     //Methods for getting and setting the instances' data (records)
     public long getId() {
@@ -133,5 +138,18 @@ public class Customers {
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
+
+    public List<Orders> getOrders() {
+        /* This solve the session closed exception when the fetch type is lazy */
+        try {
+            int size = orders.size();
+        }
+        catch (Exception e) {
+            return null;
+        }
+
+        return orders;
+    }
+
 
 }

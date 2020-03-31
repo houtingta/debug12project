@@ -1,7 +1,5 @@
 package com.ascendingdc.training.project.jdbc;
 
-import com.ascendingdc.training.project.model.Airlines;
-import com.ascendingdc.training.project.model.Customers;
 import com.ascendingdc.training.project.model.Orders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
